@@ -1,0 +1,48 @@
+name: CI Pipeline
+
+# Executa o workflow em push na branch main e em pull requests para a main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      # Checkout do código
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      # Configurar Node.js
+      - name: Configurar Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Instalar dependências
+      - name: Instalar dependências
+        run: npm ci
+
+      # Executar testes
+      - name: Executar testes
+        run: npm test
+
+      # Executar build
+      - name: Executar build
+        run: npm run build
+
+      # Upload do relatório de cobertura (opcional)
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        if: matrix.node-version == '20.x'
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false

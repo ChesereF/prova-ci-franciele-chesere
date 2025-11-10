@@ -1,0 +1,23 @@
+{
+  "name": "prova-ci-franciele-chesere",
+  "version": "1.0.0",
+  "description": "Projeto para avaliação de CI/CD com GitHub Actions",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "start": "node src/index.js",
+    "build": "echo 'Build executado com sucesso'"
+  },
+  "keywords": [
+    "ci",
+    "github-actions",
+    "nodejs",
+    "jest"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
