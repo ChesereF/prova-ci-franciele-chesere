@@ -199,7 +199,3 @@ Tests:       17 passed, 17 total
 ## 👨‍💻 Autor
 
 **Franciele Chesere**
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT.
